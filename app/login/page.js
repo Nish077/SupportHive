@@ -1,24 +1,28 @@
 "use client"
 import React, { useEffect } from 'react'
 import { useSession, signIn, signOut } from "next-auth/react";
+
 import { useRouter } from 'next/navigation';
 
 
 const Login = () => {
-  const { data: session, status } = useSession();
-  const router = useRouter();
+  const { data: session } = useSession()
+  const router = useRouter()
 
   useEffect(() => {
-    if (status === "authenticated") {
-      router.push("/profile");
+    document.title = "Login - Support Hive" 
+    console.log(session);
+
+    if (session) {
+      router.push('/profile')
     }
-  }, [status, router]);
+  }, [session])
 
   return (
-    <div className='text-white py-14 container mx-auto'>
+    <div className='text-white pt-16 container mx-auto'>
     <h1 className='text-center font-bold text-3xl '>Login to Get Started</h1>
 
-    <div className="flex flex-col gap-2 min-h-screen items-center  p-10">
+    <div className="flex flex-col gap-2 min-h-[70vh] items-center  p-10">
 
     <button 
     onClick={() => { signIn("github") }}

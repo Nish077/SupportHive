@@ -14,7 +14,7 @@ const Login = () => {
     console.log(session);
 
     if (session) {
-      router.push('/profile')
+      router.push('/dashboard')
     }
   }, [session])
 
